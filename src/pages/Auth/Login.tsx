@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { AiFillLock } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";

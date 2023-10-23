@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../assets/image/logo.svg";
 import { AiOutlineHome, AiOutlinePoweroff } from "react-icons/ai";
 

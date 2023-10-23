@@ -5,11 +5,9 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FaBarsStaggered } from "react-icons/fa6";
 
 interface AppLayout {
-  title: string;
-  description: string;
   children: ReactNode;
 }
-const AppLayout = ({ title, description, children }: AppLayout) => {
+const AppLayout = ({ children }: AppLayout) => {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
     <div className="w-full h-screen grid layout relative">
