@@ -1,4 +1,3 @@
-import React from "react";
 import mountain from "../assets/image/mountain.jpg";
 import Logo from "../assets/image/logo.svg";
 import { Outlet } from "react-router-dom";
