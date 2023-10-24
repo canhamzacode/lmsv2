@@ -19,7 +19,7 @@ const AppLayout = ({ children }: AppLayout) => {
       <Sidebar
         setShowSideBar={setShowSideBar}
         showSideBar={showSideBar}
-        role="user"
+        role="admin"
       />
       <div className="w-full h-screen grid gap-7 overflow-y-auto bg-black/30 p-[20px]">
         <div className="w-full flex items-center justify-between gap-[10px]">
