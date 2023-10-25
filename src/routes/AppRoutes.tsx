@@ -4,6 +4,8 @@ import AuthLayout from "../layout/AuthLayout";
 import Admin from "../pages/Dashboard/Admin";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
+import PrivateRoute from "./PrivateRoute";
+import NotFound from "../pages/NotFound/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -12,8 +14,16 @@ const AppRoutes = () => {
         <Route index element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="/dashboard" element={<Admin />} />
+      <Route
+        path="/dashboard/admin"
+        element={
+          <PrivateRoute roles={["admin"]}>
+            <Admin />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 };

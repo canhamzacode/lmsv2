@@ -6,7 +6,7 @@ export const SignupSchema = yup.object().shape({
   email: yup
     .string()
     .email("Invalid email format")
-    .required("This field is required"),
+    .required("Email is required"),
   sex: yup.string().required("Sex is required"),
   grade: yup.string().required("Grade is required"),
   password: yup.string().min(8).required("This Field is required"),
@@ -14,4 +14,12 @@ export const SignupSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), undefined], "Passwords Don't Match")
     .required(),
+});
+
+export const LoginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid Email format")
+    .required("Email is required"),
+  password: yup.string().min(8).required("This Field is required"),
 });
