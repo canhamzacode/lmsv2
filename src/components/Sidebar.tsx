@@ -26,7 +26,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "Home",
           icon: <AiOutlineHome size={25} />,
-          href: "/dashboard",
+          href: "/dashboard/admin",
         },
         {
           name: "User Profile",
@@ -41,7 +41,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "View Results",
           icon: <IoNewspaperOutline size={25} />,
-          href: "/view-results",
+          href: "/results",
         },
         {
           name: "Promote Students",
@@ -64,17 +64,17 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "Home",
           icon: <AiOutlineHome size={25} />,
-          href: "/dashboard",
+          href: "/dashboard/student",
         },
         {
           name: "Student Profile",
           icon: <AiOutlineUser size={25} />,
-          href: "/user-profile",
+          href: "/dashboard/student-profile",
         },
         {
           name: "View Results",
           icon: <IoNewspaperOutline size={25} />,
-          href: "/view-results",
+          href: "/dashboard/result",
         },
         {
           name: "Reset Password",
@@ -87,7 +87,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "Home",
           icon: <AiOutlineHome size={25} />,
-          href: "/dashboard",
+          href: "/dashboard/teacher",
         },
         {
           name: "Student Profile",
