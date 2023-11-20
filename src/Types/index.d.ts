@@ -13,6 +13,7 @@ export type UserData = {
   password: string;
   confirmPassword: string;
   role: ROLE;
+  username: string;
 };
 
 export type StudentData = {
@@ -28,3 +29,15 @@ export type StudentData = {
 };
 
 export type AdminData = {};
+
+export interface TeacherDetails {
+  first_name: string;
+  last_name: string;
+  email: string;
+  class_to_teach: string;
+}
+
+export interface TeacherData {
+  id: string;
+  details: TeacherDetails;
+}

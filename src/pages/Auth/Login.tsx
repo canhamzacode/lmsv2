@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AdminLoginSchema, StudentLoginSchema } from "../../config/Schema";
 import { useForm } from "react-hook-form";
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, SetStateAction } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { AnyObjectSchema } from "yup";
 import {
@@ -20,7 +20,7 @@ const Login = () => {
   };
   const { updateToken, token, updateUser } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [myResponse, setMyResponse] = useState<any>();
+
   const currentSchema =
     userToLogin == "student" ? StudentLoginSchema : AdminLoginSchema;
   const {
@@ -30,12 +30,6 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(currentSchema as AnyObjectSchema),
   });
-
-  useEffect(() => {
-    if (myResponse) {
-      updateUser(myResponse);
-    }
-  }, [myResponse]);
 
   const onLogin = async (data: any) => {
     setLoading(true);
@@ -57,13 +51,11 @@ const Login = () => {
       }
 
       if (admin || loginRes) {
-        setMyResponse({ ...(admin || loginRes), role: userToLogin });
-        // Uncomment the line below if you want to redirect after successful login
-        navigate(`/dashboard/`);
+        updateUser({ ...(admin || loginRes), role: userToLogin });
+        navigate(`/dashboard`);
       }
     } catch (error) {
       console.log(error);
-      // Handle errors more explicitly (e.g., show a user-friendly message)
     } finally {
       setLoading(false);
     }

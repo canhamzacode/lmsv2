@@ -4,13 +4,14 @@ import "./AppLayout.css";
 import { FaBarsStaggered } from "react-icons/fa6";
 import user from "../assets/image/user.jpg";
 import StudentHeader from "../components/StudentHeader";
-import Teacherheader from "../components/Teacherheader";
+import { useAuth } from "../providers/AuthProvider";
 
 interface AppLayout {
   children: ReactNode;
   role: "admin" | "student" | "teacher";
 }
 const AppLayout = ({ children, role }: AppLayout) => {
+  const { user: profile } = useAuth();
   const [showSideBar, setShowSideBar] = useState(false);
   return (
     <div className="w-full h-screen grid layout relative">
@@ -24,7 +25,14 @@ const AppLayout = ({ children, role }: AppLayout) => {
       />
       <div className="w-full h-screen flex flex-col gap-7 overflow-y-auto bg-black/50 p-[20px]">
         <div className="w-full flex items-center justify-between gap-[10px]">
-          {role === "student" ? <StudentHeader /> : <Teacherheader />}
+          {role === "student" ? (
+            <StudentHeader />
+          ) : (
+            <p className="capitalize text-white font-bold text-xl">
+              {profile?.username}
+            </p>
+          )}
+
           <div className="flex items-center gap-[15px]">
             <div className="w-[50px] h-[50px] bg-slate-200 rounded-[50%]">
               <img
