@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
+import Button from "../../components/input/Button";
 
 const NotFound = () => {
   return (
-    <div className="w-full grid gap-3">
+    <div className="w-full grid items-center justify-center gap-3 mx-auto ">
       <h3 className="text-2xl">Page NotFound</h3>
       <Link to="/">
-        <button className="bg-[#A77B37] p-[15px] text-[#fff] w-full max-w-[400px] mx-auto rounded ">
-          Back To Home
-        </button>
+        <Button label="Back To Home" />
       </Link>
     </div>
   );

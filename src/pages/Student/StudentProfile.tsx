@@ -6,7 +6,7 @@ import { FaGenderless } from "react-icons/fa";
 
 const StudentProfile = () => {
   return (
-    <AppLayout role="user">
+    <AppLayout role="student">
       <div className="w-full bg-[#FFF5E5] grid gap-5 md:p-[40px] p-[20px] rounded-md">
         <div className="flex gap-2">
           <div className="h-[50px] w-[50px] bg-slate-300 rounded-[50%]">

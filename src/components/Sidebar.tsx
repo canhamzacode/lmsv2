@@ -12,11 +12,12 @@ import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { FiKey } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { FaFileUpload } from "react-icons/fa";
+import Button from "./input/Button";
 
 interface SideBarProps {
   showSideBar: boolean;
   setShowSideBar: (boolean: boolean) => void;
-  role: "admin" | "user" | "teacher";
+  role: "admin" | "student" | "teacher";
 }
 
 const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
@@ -26,7 +27,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "Home",
           icon: <AiOutlineHome size={25} />,
-          href: "/dashboard/admin",
+          href: "/dashboard",
         },
         {
           name: "User Profile",
@@ -59,12 +60,12 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           href: "/resetPassword",
         },
       ];
-    } else if (role === "user") {
+    } else if (role === "student") {
       return [
         {
           name: "Home",
           icon: <AiOutlineHome size={25} />,
-          href: "/dashboard/student",
+          href: "/dashboard",
         },
         {
           name: "Student Profile",
@@ -87,7 +88,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "Home",
           icon: <AiOutlineHome size={25} />,
-          href: "/dashboard/teacher",
+          href: "/dashboard",
         },
         {
           name: "Student Profile",
@@ -111,8 +112,6 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         },
       ];
     }
-
-    // Return default links if the role doesn't match
     return [];
   };
   const sidebarItems = getSidebarItems();
@@ -125,12 +124,11 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
     >
       <div className="w-full relative">
         {showSideBar && (
-          <button
+          <Button
             className="p-[15px] bg-slate-200 z-[2] text-xl absolute right-0"
+            label={<AiOutlineClose size={25} />}
             onClick={() => setShowSideBar(!showSideBar)}
-          >
-            <AiOutlineClose size={25} />
-          </button>
+          />
         )}
       </div>
       <div className="w-full flex flex-col gap-[45px] py-[15px] relative min-h-screen">
@@ -155,10 +153,15 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           ))}
         </div>
         <div className="absolute w-full bottom-3 flex items-center justify-center ">
-          <button className=" items-center flex gap-2 p-[15px] rounded-md">
-            <AiOutlinePoweroff size={25} />
-            Log out
-          </button>
+          <Button
+            className=" items-center flex gap-2 p-[15px] rounded-md"
+            label={
+              <p className="flex gap-2">
+                <AiOutlinePoweroff size={25} /> Log Out
+              </p>
+            }
+            onClick={() => setShowSideBar(!showSideBar)}
+          />
         </div>
       </div>
     </div>

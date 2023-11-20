@@ -3,7 +3,7 @@ import Hero from "../../assets/image/student-hero.png";
 
 const User = () => {
   return (
-    <AppLayout role="user">
+    <AppLayout role="student">
       <div className="w-full grid justify-center items-center max-w-[500px] mx-auto gap-5 ">
         <div>
           <img src={Hero} alt="" />

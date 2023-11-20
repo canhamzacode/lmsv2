@@ -16,10 +16,20 @@ export const SignupSchema = yup.object().shape({
     .required(),
 });
 
-export const LoginSchema = yup.object().shape({
+export const AdminLoginSchema = yup.object().shape({
+  // email: yup
+  //   .string()
+  //   .email("Invalid Email format")
+  //   .required("Email is required"),
+  username: yup.string().required("Username is required"),
+  password: yup.string().min(8).required("This Field is required"),
+});
+
+export const StudentLoginSchema = yup.object().shape({
   email: yup
     .string()
     .email("Invalid Email format")
     .required("Email is required"),
+  // username: yup.string().required("Username is required"),
   password: yup.string().min(8).required("This Field is required"),
 });

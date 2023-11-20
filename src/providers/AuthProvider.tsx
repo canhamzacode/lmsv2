@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -8,10 +8,12 @@ import {
 import { UserData } from "../Types";
 
 interface AuthContextType {
-  user: UserData | null | undefined;
+  user: UserData | null;
   updateUser: (user: UserData) => void;
   logout: () => void;
   isAuthenticated: () => boolean;
+  token: String | null;
+  updateToken: (token: String) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,29 +22,38 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<UserData | null | undefined>(undefined);
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<UserData | null>(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const [token, setToken] = useState<string | null>(() =>
+    localStorage.getItem("token")
+  );
 
   useEffect(() => {
-    // Load user data from local storage on component mount
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []); // Empty dependency array ensures this effect runs once on mount
+    localStorage.setItem("user", user ? JSON.stringify(user) : "");
+    token
+      ? localStorage.setItem("token", token)
+      : localStorage.removeItem("token");
+  }, [user, token]);
 
   const handleLogOut = () => {
-    localStorage.removeItem("user"); // Remove user data from local storage
-    setUser(null); // Set the user to null in the context
+    localStorage.removeItem("user");
+    setUser(null);
+    setToken(null);
   };
 
-  const updateUser = (user: UserData) => {
-    localStorage.setItem("user", JSON.stringify(user)); // Store user data in local storage
-    setUser(user); // Set the user in the context
+  const updateUser = (newUser: UserData) => {
+    setUser(newUser);
+  };
+  const updateToken = (token: String) => {
+    setToken(token as string);
   };
 
   const isAuthenticated = () => {
-    return user !== null;
+    return !!user;
   };
 
   const authContextValue: AuthContextType = {
@@ -50,6 +61,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     updateUser,
     logout: handleLogOut,
     isAuthenticated,
+    token,
+    updateToken,
   };
 
   return (
@@ -61,7 +74,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;

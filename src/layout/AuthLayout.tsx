@@ -13,11 +13,11 @@ const AuthLayout = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="w-full max-w-[800px] bg-white bg-opacity-80  grid items-center justify-center p-[20px] rounded gap-[20px]">
+      <div className="w-full max-w-[800px] bg-white bg-opacity-80 flex flex-col items-center justify-center p-[40px] rounded gap-[20px]">
         <div className="w-[150px] h-[150px] rounded-full mx-auto">
           <img src={Logo} alt="logo" className="w-full h-full" />
         </div>
-        <div className="w-full">
+        <div className="w-full max-w-[500px]">
           <Outlet />
         </div>
       </div>
