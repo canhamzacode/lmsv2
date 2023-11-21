@@ -24,7 +24,6 @@ const Teacher = () => {
       );
       const { data } = await response.json();
       setStudents(data.data);
-      console.log(data.data);
     } catch (error) {
       setError("Error fetching student data");
     } finally {

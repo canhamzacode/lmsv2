@@ -2,16 +2,17 @@ import Table from "../../components/Table";
 import AppLayout from "../../layout/AppLayout";
 const Score = [
   {
+    id: 1,
     subject: "Agric",
     score: "20",
   },
   {
+    id: 1,
     subject: "English",
     score: "20",
   },
 ];
 
-// get header dynamically
 const header = Object.keys(Score[0]);
 const StudentResult = () => {
   return (

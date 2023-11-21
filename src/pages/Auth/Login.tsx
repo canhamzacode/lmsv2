@@ -35,7 +35,9 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://portal.labaikaschools.com/api/${userToLogin}/login`,
+        `https://portal.labaikaschools.com/api/${
+          userToLogin === "student" ? "portal" : userToLogin
+        }/login`,
         {
           method: "POST",
           headers: {
@@ -51,11 +53,17 @@ const Login = () => {
       }
 
       if (admin || loginRes) {
-        updateUser({ ...(admin || loginRes), role: userToLogin });
+        // Customize how user data is stored based on the login type
+        const userDetails =
+          userToLogin === "student"
+            ? { ...loginRes.details, id: loginRes.id }
+            : { ...loginRes, id: loginRes.data.id };
+
+        updateUser({ ...userDetails, role: userToLogin });
         navigate(`/dashboard`);
       }
     } catch (error) {
-      console.log(error);
+      // Handle errors
     } finally {
       setLoading(false);
     }

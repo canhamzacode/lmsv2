@@ -41,7 +41,7 @@ const AppRoutes = () => {
       <Route
         path="/dashboard/student"
         element={
-          <PrivateRoute roles={["student"]}>
+          <PrivateRoute roles={["admin"]}>
             <User />
           </PrivateRoute>
         }

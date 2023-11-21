@@ -4,8 +4,9 @@ export enum ROLE {
   Teacher = "teacher",
 }
 export type UserData = {
-  firstName: string;
-  lastName: string;
+  id: string;
+  first_name: string;
+  last_name: string;
   address: string;
   email: string;
   sex: string;
@@ -13,7 +14,9 @@ export type UserData = {
   password: string;
   confirmPassword: string;
   role: ROLE;
+  grade: string;
   username: string;
+  gender: string;
 };
 
 export type StudentData = {
