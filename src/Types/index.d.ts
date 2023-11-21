@@ -31,6 +31,7 @@ export type StudentData = {
 export type AdminData = {};
 
 export interface TeacherDetails {
+  id: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -41,3 +42,37 @@ export interface TeacherData {
   id: string;
   details: TeacherDetails;
 }
+
+type StudentDetails = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  address: string;
+  gender: string;
+  student_class_id: number;
+  profile_image: null | string;
+  created_at: string;
+  updated_at: string;
+  class_to_teach: string;
+};
+
+type StudentData = {
+  current_page: number;
+  data: StudentDetails[];
+  first_page_url: string;
+  from: number;
+  last_page: number;
+  last_page_url: string;
+  links: {
+    url: string | null;
+    label: string;
+    active: boolean;
+  }[];
+  next_page_url: string | null;
+  path: string;
+  per_page: number;
+  prev_page_url: string | null;
+  to: number;
+  total: number;
+};
