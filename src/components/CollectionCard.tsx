@@ -39,7 +39,7 @@ const CollectionCard = <
                     ? `/teacher/${res.id}`
                     : title == "students"
                     ? `/student/${res.id}`
-                    : ""
+                    : "/hi"
                 }
               >
                 <p className="text-[#712126] capitalize">

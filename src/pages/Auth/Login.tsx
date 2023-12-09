@@ -18,7 +18,7 @@ const Login = () => {
   const updateUserToLogin = (info: SetStateAction<string>) => {
     setUserToLogin(info);
   };
-  const { updateToken, token, updateUser } = useAuth();
+  const { updateToken, updateUser } = useAuth();
   const [loading, setLoading] = useState(false);
 
   const currentSchema =
@@ -32,6 +32,7 @@ const Login = () => {
   });
 
   const onLogin = async (data: any) => {
+    console.log("Form Data:", data);
     setLoading(true);
     try {
       const response = await fetch(
@@ -47,23 +48,28 @@ const Login = () => {
         }
       );
 
-      const { token, admin, data: loginRes } = await response.json();
+      const jsonResponse = await response.json();
+      console.log("API Response:", jsonResponse);
+
+      const { token, admin, data: loginRes = {} } = jsonResponse;
+
       if (token) {
         updateToken(token);
       }
 
       if (admin || loginRes) {
-        // Customize how user data is stored based on the login type
-        const userDetails =
-          userToLogin === "student"
-            ? { ...loginRes.details, id: loginRes.id }
-            : { ...loginRes, id: loginRes.data.id };
+        let userDetails;
+        if (userToLogin === "student") {
+          userDetails = { ...loginRes.details, id: loginRes.id };
+        } else {
+          userDetails = { ...loginRes, id: loginRes.data?.id || null };
+        }
 
         updateUser({ ...userDetails, role: userToLogin });
-        navigate(`/dashboard`);
+        navigate("/dashboard");
       }
     } catch (error) {
-      // Handle errors
+      console.error("Login Error:", error);
     } finally {
       setLoading(false);
     }
@@ -79,7 +85,6 @@ const Login = () => {
           onSubmit={handleSubmit(onLogin)}
           className="w-full  text-center grid gap-[15px]"
         >
-          {token ? token : ""}
           {userToLogin == "student" ? (
             <EmailInput errors={errors} register={register} />
           ) : (

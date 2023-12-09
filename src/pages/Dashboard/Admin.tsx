@@ -22,6 +22,7 @@ const Admin = () => {
       );
       const { data } = await response.json();
       setTeachers(data);
+      console.log(teachers);
     } catch (error) {
       console.log(error);
     }

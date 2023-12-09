@@ -5,6 +5,7 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import user from "../assets/image/user.jpg";
 import StudentHeader from "../components/StudentHeader";
 import { useAuth } from "../providers/AuthProvider";
+import CustomToastContainer from "../components/CustomToastContainer";
 
 interface AppLayout {
   children: ReactNode;

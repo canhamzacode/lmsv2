@@ -37,9 +37,6 @@ const Teacher = () => {
   if (loading) {
     return "Loading...";
   }
-  if (error) {
-    return "Error...";
-  }
   return (
     <AppLayout role="teacher">
       <div className="w-full grid md:grid-cols-2 gap-[30px] justify-center items-start grid-cols-1 ">
