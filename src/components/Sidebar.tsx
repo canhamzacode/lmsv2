@@ -10,9 +10,10 @@ import {
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { FiKey } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFileUpload } from "react-icons/fa";
 import Button from "./input/Button";
+import { useAuth } from "../providers/AuthProvider";
 
 interface SideBarProps {
   showSideBar: boolean;
@@ -91,11 +92,6 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           href: "/dashboard",
         },
         {
-          name: "Student Profile",
-          icon: <AiOutlineUser size={25} />,
-          href: "/user-profile",
-        },
-        {
           name: "View Results",
           icon: <IoNewspaperOutline size={25} />,
           href: "/view-results",
@@ -116,6 +112,12 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
   };
   const sidebarItems = getSidebarItems();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+  const signOut = () => {
+    logout();
+    navigate("/login");
+  };
   return (
     <div
       className={`w-[80%] md:w-full h-screen bg-[#FFF5E5] rounded-tr-[16px] rounded-br-[16px] md:flex md:flex-col ${
@@ -131,36 +133,39 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           />
         )}
       </div>
-      <div className="w-full flex flex-col gap-[45px] py-[15px] relative min-h-screen">
-        <div className="w-full max-w-[170px] h-[100px] mx-auto px-[20px]">
-          <img src={logo} alt="logo" className="w-full h-full " />
+      <div className="w-full flex flex-col gap-[75px] py-[15px] relative h-screen">
+        <div className="w-full flex flex-col gap-[45px] py-[15px]">
+          <div className="w-full max-w-[170px] h-[100px] mx-auto px-[20px]">
+            <img src={logo} alt="logo" className="w-full h-full " />
+          </div>
+          <div className="flex flex-col">
+            {sidebarItems.map((item, index) => (
+              <Link to={item.href} key={index}>
+                <div
+                  key={index}
+                  className={`w-full flex gap-4 border border-l-4   p-[15px] items-center cursor-pointer hover:bg-[#00000040] ${
+                    location.pathname === item.href
+                      ? "border-l-slate-700 bg-[#00000040]"
+                      : ""
+                  }`}
+                >
+                  {item.icon}
+                  {item.name}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col">
-          {sidebarItems.map((item, index) => (
-            <Link to={item.href} key={index}>
-              <div
-                key={index}
-                className={`w-full flex gap-4 border border-l-4   p-[15px] items-center cursor-pointer hover:bg-[#00000040] ${
-                  location.pathname === item.href
-                    ? "border-l-slate-700 bg-[#00000040]"
-                    : ""
-                }`}
-              >
-                {item.icon}
-                {item.name}
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="absolute w-full bottom-3 flex items-center justify-center ">
+
+        <div className="w-full flex justify-center items-center ">
           <Button
-            className=" items-center flex gap-2 p-[15px] rounded-md"
+            className="bg-[#00000040] items-center flex gap-2 p-[15px] rounded-md"
             label={
               <p className="flex gap-2">
                 <AiOutlinePoweroff size={25} /> Log Out
               </p>
             }
-            onClick={() => setShowSideBar(!showSideBar)}
+            onClick={signOut}
           />
         </div>
       </div>

@@ -12,8 +12,8 @@ interface AuthContextType {
   updateUser: (user: UserData) => void;
   logout: () => void;
   isAuthenticated: () => boolean;
-  token: String | null;
-  updateToken: (token: String) => void;
+  token: string | null;
+  updateToken: (token: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -48,7 +48,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const updateUser = (newUser: UserData) => {
     setUser(newUser);
   };
-  const updateToken = (token: String) => {
+  const updateToken = (token: string) => {
     setToken(token as string);
   };
 

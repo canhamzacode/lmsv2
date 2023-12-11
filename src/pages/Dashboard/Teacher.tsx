@@ -1,14 +1,13 @@
 import AppLayout from "../../layout/AppLayout";
-import CollectionCard from "../../components/CollectionCard";
 import { StudentDetails } from "../../Types";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import PageDescription from "../../components/PageDescription";
+import Hero from "../../assets/image/student-hero.png";
 
 const Teacher = () => {
   const [students, setStudents] = useState<StudentDetails[]>();
-  const [error, setError] = useState<String>();
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { token } = useAuth();
   const getAllStudents = async () => {
@@ -25,7 +24,7 @@ const Teacher = () => {
       const { data } = await response.json();
       setStudents(data.data);
     } catch (error) {
-      setError("Error fetching student data");
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -39,13 +38,19 @@ const Teacher = () => {
   }
   return (
     <AppLayout role="teacher">
-      <div className="w-full grid md:grid-cols-2 gap-[30px] justify-center items-start grid-cols-1 ">
+      <div className="w-full grid grid-cols-1 justify-center items-center max-w-[500px] mx-auto gap-9 ">
         <PageDescription
           heading="Students"
           length={students?.length as number}
-          story="“Teaching is the greatest act of optimism.”"
         />
-        <CollectionCard<StudentDetails> data={students} title="students" />
+        <div className="w-full">
+          <img src={Hero} alt="" className="w-[80%] mx-auto" />
+        </div>
+        <div>
+          <h3 className="text-2xl text-[#FFF5E5] text-center">
+            “Teaching is the greatest act of optimism.”
+          </h3>
+        </div>
       </div>
     </AppLayout>
   );

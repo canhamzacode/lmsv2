@@ -1,9 +1,9 @@
-import { TeacherData, TeacherDetails } from "../../Types";
-import CollectionCard from "../../components/CollectionCard";
+import { TeacherData } from "../../Types";
 import PageDescription from "../../components/PageDescription";
 import AppLayout from "../../layout/AppLayout";
 import { useAuth } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
+import Hero from "../../assets/image/student-hero.png";
 
 const Admin = () => {
   const { token } = useAuth();
@@ -34,18 +34,19 @@ const Admin = () => {
 
   return (
     <AppLayout role="admin">
-      <div className="w-full grid md:grid-cols-2 gap-[30px] justify-center items-center grid-cols-1 ">
-        <div className=" h-full md:relative ">
-          <PageDescription
-            heading="Teachers"
-            length={teachers?.length as number}
-            story="Administration is the greatest act of Responsibility.”"
-          />
-        </div>
-        <CollectionCard<TeacherDetails>
-          data={teachers?.map((teacher) => teacher.details)}
-          title="teachers"
+      <div className="w-full grid grid-cols-1 justify-center items-center max-w-[500px] mx-auto gap-9 ">
+        <PageDescription
+          heading="Students"
+          length={teachers?.length as number}
         />
+        <div className="w-full">
+          <img src={Hero} alt="" className="w-[80%] mx-auto" />
+        </div>
+        <div>
+          <h3 className="text-2xl text-[#FFF5E5] text-center">
+            “Administration is the greatest act of Responsibility.”
+          </h3>
+        </div>
       </div>
     </AppLayout>
   );

@@ -22,7 +22,9 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const currentSchema =
-    userToLogin == "student" ? StudentLoginSchema : AdminLoginSchema;
+    userToLogin === "student" || userToLogin === "teacher"
+      ? StudentLoginSchema
+      : AdminLoginSchema;
   const {
     register,
     handleSubmit,
@@ -31,7 +33,7 @@ const Login = () => {
     resolver: yupResolver(currentSchema as AnyObjectSchema),
   });
 
-  const onLogin = async (data: any) => {
+  const onLogin = async (data: typeof userToLogin) => {
     console.log("Form Data:", data);
     setLoading(true);
     try {
@@ -51,7 +53,7 @@ const Login = () => {
       const jsonResponse = await response.json();
       console.log("API Response:", jsonResponse);
 
-      const { token, admin, data: loginRes = {} } = jsonResponse;
+      const { token, admin, data: loginRes } = jsonResponse;
 
       if (token) {
         updateToken(token);
@@ -61,8 +63,10 @@ const Login = () => {
         let userDetails;
         if (userToLogin === "student") {
           userDetails = { ...loginRes.details, id: loginRes.id };
-        } else {
-          userDetails = { ...loginRes, id: loginRes.data?.id || null };
+        } else if (userToLogin === "admin") {
+          userDetails = { ...admin, id: admin.id };
+        } else if (userToLogin === "teacher") {
+          userDetails = { id: loginRes.id, ...loginRes.details };
         }
 
         updateUser({ ...userDetails, role: userToLogin });
@@ -87,8 +91,10 @@ const Login = () => {
         >
           {userToLogin == "student" ? (
             <EmailInput errors={errors} register={register} />
-          ) : (
+          ) : userToLogin == "admin" ? (
             <UsernameInput errors={errors} register={register} />
+          ) : (
+            <EmailInput errors={errors} register={register} />
           )}
           <PasswordInput errors={errors} register={register} />
           <Button loading={loading} label="Submit.." type="submit" />

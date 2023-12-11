@@ -3,9 +3,7 @@ import { useState, ReactNode } from "react";
 import "./AppLayout.css";
 import { FaBarsStaggered } from "react-icons/fa6";
 import user from "../assets/image/user.jpg";
-import StudentHeader from "../components/StudentHeader";
 import { useAuth } from "../providers/AuthProvider";
-import CustomToastContainer from "../components/CustomToastContainer";
 
 interface AppLayout {
   children: ReactNode;
@@ -26,11 +24,13 @@ const AppLayout = ({ children, role }: AppLayout) => {
       />
       <div className="w-full h-screen flex flex-col gap-7 overflow-y-auto bg-black/50 p-[20px]">
         <div className="w-full flex items-center justify-between gap-[10px]">
-          {role === "student" ? (
-            <StudentHeader />
-          ) : (
-            <p className="capitalize text-white font-bold text-xl">
-              {profile?.username}
+          {profile && (
+            <p className="capitalize text-white font-bold text-2xl">
+              {`Hello ${
+                profile?.role === "admin"
+                  ? "Admin"
+                  : `${profile?.first_name} ${profile?.last_name}`
+              } ${profile?.username ? `(${profile?.username})` : ""}`}
             </p>
           )}
 
