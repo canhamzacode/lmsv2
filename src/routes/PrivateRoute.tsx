@@ -10,10 +10,11 @@ const PrivateRoute = ({
 }) => {
   const location = useLocation();
   const { user, isAuthenticated } = useAuth();
+  const authenticated = isAuthenticated();
 
   const userHasRequiredRole = user && roles.includes(user.role);
 
-  if (!isAuthenticated) {
+  if (!authenticated) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 

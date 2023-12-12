@@ -5,15 +5,14 @@ import {
   AiOutlineMail,
   AiOutlinePoweroff,
   AiOutlineUser,
-  AiOutlineUserAdd,
 } from "react-icons/ai";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
-import { FiKey } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFileUpload } from "react-icons/fa";
 import Button from "./input/Button";
 import { useAuth } from "../providers/AuthProvider";
+import { CiViewList } from "react-icons/ci";
 
 interface SideBarProps {
   showSideBar: boolean;
@@ -31,19 +30,9 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           href: "/dashboard",
         },
         {
-          name: "User Profile",
-          icon: <AiOutlineUser size={25} />,
-          href: "/user-profile",
-        },
-        {
-          name: "Add User",
-          icon: <AiOutlineUserAdd size={25} />,
-          href: "/add-user",
-        },
-        {
-          name: "View Results",
-          icon: <IoNewspaperOutline size={25} />,
-          href: "/results",
+          name: "View Teachers",
+          icon: <CiViewList size={25} />,
+          href: "/view-teachers",
         },
         {
           name: "Promote Students",
@@ -54,11 +43,6 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           name: "Broadcast Mail",
           icon: <AiOutlineMail size={25} />,
           href: "broadcast",
-        },
-        {
-          name: "Reset Password",
-          icon: <FiKey size={25} />,
-          href: "/resetPassword",
         },
       ];
     } else if (role === "student") {
@@ -78,11 +62,6 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           icon: <IoNewspaperOutline size={25} />,
           href: "/dashboard/result",
         },
-        {
-          name: "Reset Password",
-          icon: <FiKey size={25} />,
-          href: "/resetPassword",
-        },
       ];
     } else if (role === "teacher") {
       return [
@@ -97,14 +76,14 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           href: "/view-results",
         },
         {
+          name: "View Students",
+          icon: <CiViewList size={25} />,
+          href: "/view-students",
+        },
+        {
           name: "Upload Results",
           icon: <FaFileUpload size={25} />,
           href: "/upload-results",
-        },
-        {
-          name: "Reset Password",
-          icon: <FiKey size={25} />,
-          href: "/resetPassword",
         },
       ];
     }

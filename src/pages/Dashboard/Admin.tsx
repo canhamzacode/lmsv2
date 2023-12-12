@@ -3,7 +3,7 @@ import PageDescription from "../../components/PageDescription";
 import AppLayout from "../../layout/AppLayout";
 import { useAuth } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
-import Hero from "../../assets/image/student-hero.png";
+import Hero from "../../assets/image/admin.svg";
 
 const Admin = () => {
   const { token } = useAuth();

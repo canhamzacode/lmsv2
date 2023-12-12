@@ -3,7 +3,7 @@ import { StudentDetails } from "../../Types";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import PageDescription from "../../components/PageDescription";
-import Hero from "../../assets/image/student-hero.png";
+import Hero from "../../assets/image/teacher.svg";
 
 const Teacher = () => {
   const [students, setStudents] = useState<StudentDetails[]>();
