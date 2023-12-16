@@ -36,13 +36,11 @@ const StudentResult = () => {
         }
       }
       setResults(results);
-      console.log(data.data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    console.log(header);
     fetchResult();
   }, []);
 

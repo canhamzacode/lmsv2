@@ -60,7 +60,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return !!user;
   };
 
-  console.log("Is Authenicated", isAuthenticated());
+  // console.log("Is Authenicated", isAuthenticated());
   const authContextValue: AuthContextType = {
     user,
     updateUser,
