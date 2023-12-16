@@ -4,6 +4,7 @@ import {
   AiOutlineHome,
   AiOutlineMail,
   AiOutlinePoweroff,
+  AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
 import { IoNewspaperOutline } from "react-icons/io5";
@@ -35,6 +36,11 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           href: "/view-teachers",
         },
         {
+          name: "View All Grades",
+          icon: <CiViewList size={25} />,
+          href: "/dashboard/view-grades",
+        },
+        {
           name: "Promote Students",
           icon: <MdKeyboardDoubleArrowUp size={25} />,
           href: "/promote-students",
@@ -61,6 +67,11 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           name: "View Results",
           icon: <IoNewspaperOutline size={25} />,
           href: "/dashboard/result",
+        },
+        {
+          name: "Update Profile",
+          icon: <AiOutlineProfile size={25} />,
+          href: "/dashboard/update-profile",
         },
       ];
     } else if (role === "teacher") {

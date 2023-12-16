@@ -9,7 +9,7 @@ const Teacher = () => {
   const [students, setStudents] = useState<StudentDetails[]>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const getAllStudents = async () => {
     try {
       const response = await fetch(
@@ -42,6 +42,7 @@ const Teacher = () => {
         <PageDescription
           heading="Students"
           length={students?.length as number}
+          classToTeach={user?.class_to_teach as string}
         />
         <div className="w-full">
           <img src={Hero} alt="" className="w-[80%] mx-auto" />

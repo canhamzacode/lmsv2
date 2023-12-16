@@ -12,6 +12,7 @@ import StudentProfile from "../pages/Student/StudentProfile";
 import StudentResult from "../pages/Student/StudentResult";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import UpdateProfile from "../pages/Student/UpdateProfile";
 
 const AppRoutes = () => {
   return (
@@ -35,6 +36,14 @@ const AppRoutes = () => {
         element={
           <PrivateRoute roles={["admin", "student", "teacher"]}>
             <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/update-profile"
+        element={
+          <PrivateRoute roles={["admin", "student", "teacher"]}>
+            <UpdateProfile />
           </PrivateRoute>
         }
       />

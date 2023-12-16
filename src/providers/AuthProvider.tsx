@@ -46,7 +46,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const updateUser = (newUser: UserData) => {
-    setUser(newUser);
+    const updatedUser = {
+      ...user,
+      ...newUser,
+    };
+    setUser(updatedUser);
   };
   const updateToken = (token: string) => {
     setToken(token as string);

@@ -17,6 +17,7 @@ export type UserData = {
   grade: string;
   username: string;
   gender: string;
+  class_to_teach: string;
 };
 
 export type StudentData = {
