@@ -94,7 +94,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
   return (
     <div
       className={`w-[80%] md:w-full h-screen bg-[#FFF5E5] rounded-tr-[16px] rounded-br-[16px] md:flex md:flex-col ${
-        showSideBar ? "absolute flex flex-col z-[2] " : "hidden"
+        showSideBar ? "absolute flex flex-col z-20 " : "hidden"
       }`}
     >
       <div className="w-full relative">
@@ -106,7 +106,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           />
         )}
       </div>
-      <div className="w-full flex flex-col gap-[75px] py-[15px] relative h-screen">
+      <div className="w-full flex flex-col gap-[75px] py-[15px] h-screen">
         <div className="w-full flex flex-col gap-[45px] py-[15px]">
           <div className="w-full max-w-[170px] h-[100px] mx-auto px-[20px]">
             <img src={logo} alt="logo" className="w-full h-full " />
