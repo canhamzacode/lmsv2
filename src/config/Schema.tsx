@@ -21,6 +21,15 @@ export const AdminLoginSchema = yup.object().shape({
   password: yup.string().min(8).required("This Field is required"),
 });
 
+export const ResultSchema = yup.object().shape({
+  mathematics: yup.number().required("Mathematics is required"),
+  english: yup.number().required("English is required"),
+  civic: yup.number().required("Civic is required"),
+  physics: yup.number().required("Physics is required"),
+  chemistry: yup.number().required("Chemistry is required"),
+  health_education: yup.number().required("Health Education is required"),
+});
+
 export const StudentLoginSchema = yup.object().shape({
   email: yup
     .string()

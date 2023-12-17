@@ -45,9 +45,6 @@ const ViewTeachers = () => {
     getAllTeachers();
   }, []);
 
-  useEffect(() => {
-    console.log(teachersDatas);
-  }, [teachersDatas]);
   return (
     <AppLayout role="admin">
       <TeachersTable header={header} data={teachersDatas} />

@@ -8,7 +8,6 @@ import {
 } from "react-icons/ai";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFileUpload } from "react-icons/fa";
 import Button from "./input/Button";
 import { useAuth } from "../providers/AuthProvider";
 import { CiViewList } from "react-icons/ci";
@@ -71,19 +70,14 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
           href: "/dashboard",
         },
         {
-          name: "View Results",
-          icon: <IoNewspaperOutline size={25} />,
-          href: "/view-results",
+          name: "Teacher Profile",
+          icon: <AiOutlineUser size={25} />,
+          href: "/dashboard/teacher",
         },
         {
           name: "View Students",
           icon: <CiViewList size={25} />,
-          href: "/view-students",
-        },
-        {
-          name: "Upload Results",
-          icon: <FaFileUpload size={25} />,
-          href: "/upload-results",
+          href: "/dashboard/students",
         },
       ];
     }

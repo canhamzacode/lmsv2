@@ -1,12 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/Auth/LandingPage";
 import AuthLayout from "../layout/AuthLayout";
-import Admin from "../pages/Dashboard/Admin";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
-// import PrivateRoute from "./PrivateRoute";
 import NotFound from "../pages/NotFound/NotFound";
-import Teacher from "../pages/Dashboard/Teacher";
 import StudentProfile from "../pages/Student/StudentProfile";
 import StudentResult from "../pages/Student/StudentResult";
 import PrivateRoute from "./PrivateRoute";
@@ -14,6 +11,8 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import UpdateProfile from "../pages/Student/UpdateProfile";
 import ViewTeachers from "../pages/Admin/ViewTeachers";
 import ViewGrades from "../pages/Admin/ViewGrades";
+import TeacherStudents from "../pages/Teacher/TeacherStudents";
+import TeacehrProfile from "../pages/Teacher/TeacherProfile";
 
 const AppRoutes = () => {
   return (
@@ -24,14 +23,6 @@ const AppRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Route>
-      <Route
-        path="/dashboard/admin"
-        element={
-          <PrivateRoute roles={["admin"]}>
-            <Admin />
-          </PrivateRoute>
-        }
-      />
       <Route
         path="/dashboard"
         element={
@@ -75,17 +66,25 @@ const AppRoutes = () => {
       <Route
         path="/dashboard/result"
         element={
-          // <PrivateRoute roles={["admin"]}>
-          <StudentResult />
-          // </PrivateRoute>
+          <PrivateRoute roles={["student"]}>
+            <StudentResult />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/students"
+        element={
+          <PrivateRoute roles={["teacher"]}>
+            <TeacherStudents />
+          </PrivateRoute>
         }
       />
       <Route
         path="/dashboard/teacher"
         element={
-          // <PrivateRoute roles={["admin"]}>
-          <Teacher />
-          // </PrivateRoute>
+          <PrivateRoute roles={["teacher"]}>
+            <TeacehrProfile />
+          </PrivateRoute>
         }
       />
     </Routes>

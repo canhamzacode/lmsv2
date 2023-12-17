@@ -31,7 +31,6 @@ const Signup = () => {
   });
   const onCreateAccount = async (data: StudentType) => {
     setLoading(true);
-    console.log(data);
     const gradeId = data.grade.slice(-1);
     try {
       const response = await fetch(

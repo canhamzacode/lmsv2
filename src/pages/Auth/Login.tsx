@@ -34,7 +34,6 @@ const Login = () => {
   });
 
   const onLogin = async (data: typeof userToLogin) => {
-    console.log("Form Data:", data);
     setLoading(true);
     try {
       const response = await fetch(
@@ -51,7 +50,6 @@ const Login = () => {
       );
 
       const jsonResponse = await response.json();
-      console.log("API Response:", jsonResponse);
 
       const { token, admin, data: loginRes } = jsonResponse;
 
