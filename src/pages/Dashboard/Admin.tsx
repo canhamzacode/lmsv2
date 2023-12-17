@@ -36,7 +36,7 @@ const Admin = () => {
     <AppLayout role="admin">
       <div className="w-full grid grid-cols-1 justify-center items-center max-w-[500px] mx-auto gap-9 ">
         <PageDescription
-          heading="Students"
+          heading="Teachers"
           length={teachers?.length as number}
         />
         <div className="w-full">

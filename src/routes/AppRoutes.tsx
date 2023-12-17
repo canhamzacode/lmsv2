@@ -6,13 +6,14 @@ import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
 // import PrivateRoute from "./PrivateRoute";
 import NotFound from "../pages/NotFound/NotFound";
-import User from "../pages/Dashboard/User";
 import Teacher from "../pages/Dashboard/Teacher";
 import StudentProfile from "../pages/Student/StudentProfile";
 import StudentResult from "../pages/Student/StudentResult";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import UpdateProfile from "../pages/Student/UpdateProfile";
+import ViewTeachers from "../pages/Admin/ViewTeachers";
+import ViewGrades from "../pages/Admin/ViewGrades";
 
 const AppRoutes = () => {
   return (
@@ -42,25 +43,33 @@ const AppRoutes = () => {
       <Route
         path="/dashboard/update-profile"
         element={
-          <PrivateRoute roles={["admin", "student", "teacher"]}>
+          <PrivateRoute roles={["student"]}>
             <UpdateProfile />
           </PrivateRoute>
         }
       />
       <Route
-        path="/dashboard/student"
+        path="/dashboard/teachers"
         element={
           <PrivateRoute roles={["admin"]}>
-            <User />
+            <ViewTeachers />
           </PrivateRoute>
         }
       />
       <Route
-        path="/dashboard/student-profile"
+        path="/dashboard/grades"
         element={
-          // <PrivateRoute roles={["admin"]}>
-          <StudentProfile />
-          // </PrivateRoute>
+          <PrivateRoute roles={["admin"]}>
+            <ViewGrades />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/profile"
+        element={
+          <PrivateRoute roles={["student"]}>
+            <StudentProfile />
+          </PrivateRoute>
         }
       />
       <Route

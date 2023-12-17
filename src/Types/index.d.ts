@@ -80,3 +80,13 @@ type StudentData = {
   to: number;
   total: number;
 };
+
+export type TeacherType = Pick<
+  UserData,
+  "id" | "first_name" | "last_name" | "class_to_teach" | "email"
+>;
+
+export type GradeType = {
+  id: string;
+  grade: string;
+};

@@ -15,10 +15,12 @@ const PageDescription = ({
         <h3 className="text-lg font-bold">{length}</h3>
         <h3 className="text-xl">{heading}</h3>
       </div>
-      <div className="text-center bg-slate-100 py-2 px-4 rounded-xl text-black">
-        <h3 className="text-lg font-bold">Class</h3>
-        <h2 className="text-xl capitalize">{classToTeach}</h2>
-      </div>
+      {classToTeach && (
+        <div className="text-center bg-slate-100 py-2 px-4 rounded-xl text-black">
+          <h3 className="text-lg font-bold">Class</h3>
+          <h2 className="text-xl capitalize">{classToTeach}</h2>
+        </div>
+      )}
     </div>
   );
 };

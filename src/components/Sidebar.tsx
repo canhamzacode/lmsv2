@@ -2,18 +2,17 @@ import logo from "../assets/image/logo.svg";
 import {
   AiOutlineClose,
   AiOutlineHome,
-  AiOutlineMail,
   AiOutlinePoweroff,
   AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
 import { IoNewspaperOutline } from "react-icons/io5";
-import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFileUpload } from "react-icons/fa";
 import Button from "./input/Button";
 import { useAuth } from "../providers/AuthProvider";
 import { CiViewList } from "react-icons/ci";
+import { SiGoogleclassroom } from "react-icons/si";
 
 interface SideBarProps {
   showSideBar: boolean;
@@ -33,22 +32,12 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "View Teachers",
           icon: <CiViewList size={25} />,
-          href: "/view-teachers",
+          href: "/dashboard/teachers",
         },
         {
           name: "View All Grades",
-          icon: <CiViewList size={25} />,
-          href: "/dashboard/view-grades",
-        },
-        {
-          name: "Promote Students",
-          icon: <MdKeyboardDoubleArrowUp size={25} />,
-          href: "/promote-students",
-        },
-        {
-          name: "Broadcast Mail",
-          icon: <AiOutlineMail size={25} />,
-          href: "broadcast",
+          icon: <SiGoogleclassroom size={25} />,
+          href: "/dashboard/grades",
         },
       ];
     } else if (role === "student") {
@@ -61,7 +50,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
         {
           name: "Student Profile",
           icon: <AiOutlineUser size={25} />,
-          href: "/dashboard/student-profile",
+          href: "/dashboard/profile",
         },
         {
           name: "View Results",
