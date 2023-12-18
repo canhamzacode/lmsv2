@@ -12,6 +12,7 @@ import Button from "./input/Button";
 import { useAuth } from "../providers/AuthProvider";
 import { CiViewList } from "react-icons/ci";
 import { SiGoogleclassroom } from "react-icons/si";
+import { ReactNode, useEffect, useState } from "react";
 
 interface SideBarProps {
   showSideBar: boolean;
@@ -19,8 +20,20 @@ interface SideBarProps {
   role: "admin" | "student" | "teacher";
 }
 
+type SidebarType = {
+  name: string;
+  icon: ReactNode;
+  href: string;
+};
+
 const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
-  const getSidebarItems = () => {
+  const [sidebarItems, setSidebarItems] = useState<SidebarType[]>();
+
+  useEffect(() => {
+    setSidebarItems(getSidebarItems(role));
+  }, [role]);
+
+  const getSidebarItems = (role: string) => {
     if (role === "admin") {
       return [
         {
@@ -83,7 +96,6 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
     }
     return [];
   };
-  const sidebarItems = getSidebarItems();
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -112,7 +124,7 @@ const Sidebar = ({ showSideBar, setShowSideBar, role }: SideBarProps) => {
             <img src={logo} alt="logo" className="w-full h-full " />
           </div>
           <div className="flex flex-col">
-            {sidebarItems.map((item, index) => (
+            {sidebarItems?.map((item, index) => (
               <Link to={item.href} key={index}>
                 <div
                   key={index}
